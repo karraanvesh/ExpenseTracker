@@ -1,0 +1,30 @@
+[
+  {
+    "id": 11,
+    "description": "Breakfast",
+    "amount": "100",
+    "createdAt": "28-10-2026 0:14:19.283",
+    "updatedAt": "28-10-2026 0:14:19.283"
+  },
+  {
+    "id": 12,
+    "description": "Lunch",
+    "amount": "300",
+    "createdAt": "28-10-2026 0:14:30.16",
+    "updatedAt": "28-10-2026 0:14:30.17"
+  },
+  {
+    "id": 13,
+    "description": "Tea_and_snacks",
+    "amount": "80",
+    "createdAt": "28-10-2026 0:14:46.506",
+    "updatedAt": "28-10-2026 0:14:46.507"
+  },
+  {
+    "id": 14,
+    "description": "Dinner_and_drinks",
+    "amount": "1000",
+    "createdAt": "28-10-2026 0:15:2.387",
+    "updatedAt": "28-10-2026 0:15:2.388"
+  }
+]
