@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { addExpenseController, deleteExpenseController, getAllExpensesController, updateExpenseController } from "../controllers/expense.controller.js";
+import { addExpenseController, deleteExpenseController, getAllExpensesController, getExpensesByMonthController, getTotalExpensesController, updateExpenseController } from "../controllers/expense.controller.js";
 
 export function expenseRouter() {
     
@@ -12,7 +12,11 @@ export function expenseRouter() {
     .requiredOption("--amount <amount of the expense>" , "amount of the expense")
     .action((options) => {
 
-        addExpenseController(options.description , options.amount);
+        if(isValidAmount(options.amount)) {
+            addExpenseController(options.description , options.amount);
+        } else {
+            throw new Error("Amount should be greater than 0");
+        }
     });
 
     program
@@ -22,29 +26,24 @@ export function expenseRouter() {
     .option("--amount <amount of the expense>" , "amount of the expense")
     .action((options) => {
 
-        const flags = [];
-        const fieldsAndValues = {
-
-        };
+        const fieldsAndValues = {};
 
         if(options.description) {
-            flags.push("description");
             fieldsAndValues.description = options.description;
         }
 
-        if(options.amount) {
-            flags.push("amount");
+        if(options.amount && isValidAmount(options.amount)) {
             fieldsAndValues.amount = options.amount;
         }
 
-        updateExpenseController(Number(options.id) , flags , fieldsAndValues);
+        updateExpenseController(Number(options.id) , fieldsAndValues);
     });
 
     program
     .command("delete")
     .requiredOption("--id <id of the expense>" , "id of the expense")
     .action((options) => {
-        deleteExpenseController(options.id);
+        deleteExpenseController(Number(options.id));
     });
 
     program
@@ -53,12 +52,11 @@ export function expenseRouter() {
     .action((options) => {
 
     if(!options.month) {
-        console.log("Filter all expenses"); 
+        getTotalExpensesController();
     } else {
-        console.log("summary of the month : " , options);
+        getExpensesByMonthController(Number(options.month));
     }
-
-    // call the corresponding controller
+    
     });
 
 

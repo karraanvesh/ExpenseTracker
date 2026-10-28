@@ -1,21 +1,23 @@
-{
-  "id": 24,
-  "description": "Dinner",
-  "amount": "30",
-  "createdAt": "28-10-2026 13:43:44.497",
-  "updatedAt": "28-10-2026 13:43:44.497"
-},
-{
-  "id": 25,
-  "description": "Lunch",
-  "amount": "30",
-  "createdAt": "28-10-2026 13:43:52.928",
-  "updatedAt": "28-10-2026 13:43:52.929"
-},
-{
-  "id": 26,
-  "description": "Breakfast",
-  "amount": "30",
-  "createdAt": "28-10-2026 13:44:1.840",
-  "updatedAt": "28-10-2026 13:44:1.841"
-},
+[
+  {
+    "id": 37,
+    "description": "Lunch",
+    "amount": "100",
+    "createdAt": "28-10-2026 20:26:56.416",
+    "updatedAt": "28-10-2026 20:26:56.417"
+  },
+  {
+    "id": 39,
+    "description": "Chocolates_and_icecreams",
+    "amount": "200",
+    "createdAt": "28-10-2026 20:31:34.819",
+    "updatedAt": "28-10-2026 20:31:34.820"
+  },
+  {
+    "id": 40,
+    "description": "Groceries",
+    "amount": "500",
+    "createdAt": "28-10-2026 20:32:1.256",
+    "updatedAt": "28-10-2026 20:32:1.257"
+  }
+]

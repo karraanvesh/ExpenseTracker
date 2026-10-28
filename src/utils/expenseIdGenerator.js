@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const sourceFilePath = path.join(import.meta.dirname , "../expenseId.txt");
+const sourceFilePath = path.join(import.meta.dirname , "./expenseId.txt");
 
 export function idGenerator() {
     try {

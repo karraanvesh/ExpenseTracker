@@ -3,6 +3,8 @@ import path from "path";
 import { getTimeStamp } from "../utils/dateTime.js";
 import { idGenerator } from "../utils/expenseIdGenerator.js";
 import { findExpenseById } from "../utils/helpers/findExpense.js";
+import { calculateExpenses } from "../utils/helpers/summaryOfExpenses.js";
+import { getMonthlyExpenses } from "../utils/helpers/monthlyExpenses.js";
 
 const filePath = path.join(import.meta.dirname , "./../../logs/expenseTracker.txt");
 
@@ -28,13 +30,17 @@ export function addExpenseRepository(descriptionOfExpense , amountOfExpense) {
                 updatedAt : getTimeStamp(),
             }
 
-            const data = fs.readFileSync(filePath , 'utf8');
+            let data = fs.readFileSync(filePath , 'utf8');
+
+            if(!data) {
+                data = JSON.stringify([]);
+            }
 
             const allExpenses = JSON.parse(data);
 
-            if(!Array.isArray(allExpenses)) {
-                allExpenses = [allExpenses];
-            }
+            // if(!Array.isArray(allExpenses)) {
+            //     allExpenses = [allExpenses];
+            // }
 
             allExpenses.push(newExpense);
 
@@ -51,7 +57,7 @@ export function addExpenseRepository(descriptionOfExpense , amountOfExpense) {
     }
 }
 
-export function updateExpenseRepository(expenseId , fieldsToBeUpdated , updateObj) {
+export function updateExpenseRepository(expenseId , updateObj) {
     try {
         if(fs.existsSync(filePath)) {
             const expenses = fs.readFileSync(filePath , 'utf8');
@@ -124,6 +130,43 @@ export function getExpensesRepoistory() {
             return result;
         } else {
             throw new Error("Unable to find a file or folder");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function getTotalExpensesRepository() {
+    try {
+
+        if(fs.existsSync(filePath)) {
+
+            const data = fs.readFileSync(filePath , 'utf8');
+            const listOfExpenses = JSON.parse(data);
+
+            const totalExpenses = calculateExpenses(listOfExpenses);
+
+            return totalExpenses;
+        } else {
+            throw new Error("Unable to find the file or folder");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function getExpensesByMonthRepository(month) {
+    try {
+
+        if(fs.existsSync(filePath)) {
+            const data = fs.readFileSync(filePath , 'utf8');
+            const expensesList = JSON.parse(data);
+
+            const monthlyExpenses = getMonthlyExpenses(expensesList , month);
+
+            return monthlyExpenses;
+        } else {
+            throw new Error("Unable to find the file or folder");
         }
     } catch (error) {
         console.log(error);
