@@ -75,6 +75,8 @@ export function updateExpenseRepository(expenseId , fieldsToBeUpdated , updateOb
                 expenseToBeUpdated.amount = updateObj.amount;
             }
 
+            expenseToBeUpdated.updatedAt = getTimeStamp();
+
             expenseList[indOfExpense] = expenseToBeUpdated;
 
             fs.writeFileSync(filePath , JSON.stringify(expenseList , null , 2) , 'utf8');
