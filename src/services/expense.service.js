@@ -1,7 +1,7 @@
-import { addExpenseRepository, deleteExpenseRepository, getExpensesByMonthRepository, getExpensesRepoistory, getTotalExpensesRepository, updateExpenseRepository } from "../repository/expense.repository.js";
+import { addExpenseRepository, deleteExpenseRepository, getExpensesByCategoryRepository, getExpensesByMonthRepository, getExpensesRepoistory, getTotalExpensesRepository, updateExpenseRepository } from "../repository/expense.repository.js";
 
-export function addExpenseService(description , amount) {
-    const expense = addExpenseRepository(description , amount);
+export function addExpenseService(description , amount , category) {
+    const expense = addExpenseRepository(description , amount , category);
 
     return expense;
 }
@@ -34,4 +34,10 @@ export function getExpensesByMonthService(month) {
     const monthlyExpenses = getExpensesByMonthRepository(month);
 
     return monthlyExpenses;
+}
+
+export function getExpensesByCategoryService(category) {
+    const categoryExpenses = getExpensesByCategoryRepository(category);
+
+    return categoryExpenses;
 }

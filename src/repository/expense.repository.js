@@ -5,10 +5,11 @@ import { idGenerator } from "../utils/expenseIdGenerator.js";
 import { findExpenseById } from "../utils/helpers/findExpense.js";
 import { calculateExpenses } from "../utils/helpers/summaryOfExpenses.js";
 import { getMonthlyExpenses } from "../utils/helpers/monthlyExpenses.js";
+import { getCategoryExpenses } from "../utils/helpers/expenseCategory.js";
 
 const filePath = path.join(import.meta.dirname , "./../../logs/expenseTracker.txt");
 
-export function addExpenseRepository(descriptionOfExpense , amountOfExpense) {
+export function addExpenseRepository(descriptionOfExpense , amountOfExpense , categoryOfExpense) {
     try {
 
         // 1. Check whether the filePath is valid or not 
@@ -28,6 +29,7 @@ export function addExpenseRepository(descriptionOfExpense , amountOfExpense) {
                 amount : amountOfExpense,
                 createdAt : getTimeStamp(),
                 updatedAt : getTimeStamp(),
+                category  : categoryOfExpense,
             }
 
             let data = fs.readFileSync(filePath , 'utf8');
@@ -167,6 +169,25 @@ export function getExpensesByMonthRepository(month) {
             return monthlyExpenses;
         } else {
             throw new Error("Unable to find the file or folder");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function getExpensesByCategoryRepository(category) {
+    try {
+
+        if(fs.existsSync(filePath)) {
+
+            const data = fs.readFileSync(filePath , 'utf8');
+            const expenseList = JSON.parse(data);
+
+            const categoryExpenses = getCategoryExpenses(expenseList , category);
+
+            return categoryExpenses;
+        } else {
+            throw new Error("NotFoundError : Unable to find the file or directory");
         }
     } catch (error) {
         console.log(error);

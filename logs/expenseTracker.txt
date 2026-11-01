@@ -19,5 +19,45 @@
     "amount": "500",
     "createdAt": "28-10-2026 20:32:1.256",
     "updatedAt": "28-10-2026 20:32:1.257"
+  },
+  {
+    "id": 41,
+    "description": "Library",
+    "amount": "300",
+    "createdAt": "1-11-2026 21:33:18.343",
+    "updatedAt": "1-11-2026 21:33:18.344",
+    "category": "personal"
+  },
+  {
+    "id": 42,
+    "description": "laptop",
+    "amount": "50000",
+    "createdAt": "1-11-2026 21:34:9.147",
+    "updatedAt": "1-11-2026 21:34:9.147",
+    "category": "personal"
+  },
+  {
+    "id": 43,
+    "description": "formal shoes",
+    "amount": "2000",
+    "createdAt": "1-11-2026 21:34:32.708",
+    "updatedAt": "1-11-2026 21:34:32.709",
+    "category": "professional"
+  },
+  {
+    "id": 44,
+    "description": "carry bag",
+    "amount": "1000",
+    "createdAt": "1-11-2026 21:34:46.253",
+    "updatedAt": "1-11-2026 21:34:46.254",
+    "category": "professional"
+  },
+  {
+    "id": 45,
+    "description": "Cool glasses",
+    "amount": "500",
+    "createdAt": "1-11-2026 21:36:19.928",
+    "updatedAt": "1-11-2026 21:36:19.929",
+    "category": "professional"
   }
 ]
