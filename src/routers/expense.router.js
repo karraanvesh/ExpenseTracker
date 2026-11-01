@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { addExpenseController, deleteExpenseController, getAllExpensesController, getExpensesByCategoryController, getExpensesByMonthController, getTotalExpensesController, updateExpenseController } from "../controllers/expense.controller.js";
+import { addExpenseController, deleteExpenseController, getAllExpensesController, getExpensesByCategoryController, getExpensesByMonthController, getTotalExpensesController, setMonthlyBudgetController, updateExpenseController } from "../controllers/expense.controller.js";
 import { isValidAmount } from "../middlewares/validateAmount.js";
 
 export function expenseRouter() {
@@ -73,6 +73,15 @@ export function expenseRouter() {
     .requiredOption("--category <type of the category>" , "type of the category")
     .action((options) => {
         getExpensesByCategoryController(options.category);
+    });
+
+    program
+    .command("budget")
+    .requiredOption("--budget <value of monthly budget>" , "value of monthly budget")
+    .action((options) => {
+        const monthlyBudget = Number(options.budget);
+
+        setMonthlyBudgetController(monthlyBudget);
     });
 
     program.parse();

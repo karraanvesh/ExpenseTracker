@@ -1,10 +1,13 @@
-import { addExpenseService, deleteExpenseService, getExpensesByCategoryService, getExpensesByMonthService, getExpensesService, getTotalExpensesService, updateExpenseService } from "../services/expense.service.js";
+import { addExpenseService, deleteExpenseService, getExpensesByCategoryService, getExpensesByMonthService, getExpensesService, getTotalExpensesService, setMonthlyBudgetService, updateExpenseService } from "../services/expense.service.js";
 
 export function addExpenseController(description , amount , category) {
     const expenseResponse = addExpenseService(description , amount , category);
 
-    console.log(`Expense is successfully created : `);
-    console.log(expenseResponse);
+    if(expenseResponse) {
+        console.log(`Expense is successfully created : `); 
+    } 
+
+    console.log("response : " , expenseResponse);
 }
 
 export function deleteExpenseController(expenseId) {
@@ -16,7 +19,10 @@ export function deleteExpenseController(expenseId) {
 export function updateExpenseController(expenseId , updateObj) {
     const expenseResponse = updateExpenseService(expenseId , updateObj);
 
-    console.log(`Expense with id : ${expenseId} has been updated successfully`);
+    if(expenseResponse) {
+         console.log(`Expense with id : ${expenseId} has been updated successfully`);
+    }
+
     console.log(expenseResponse);
 }
 
@@ -43,4 +49,10 @@ export function getExpensesByCategoryController(category) {
 
     console.log(`${category} expenses are : `);
     console.log(expenseResponse);
+}
+
+export function setMonthlyBudgetController(budget) {
+    const response = setMonthlyBudgetService(budget);
+
+    console.log(response);
 }

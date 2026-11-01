@@ -6,6 +6,8 @@ import { findExpenseById } from "../utils/helpers/findExpense.js";
 import { calculateExpenses } from "../utils/helpers/summaryOfExpenses.js";
 import { getMonthlyExpenses } from "../utils/helpers/monthlyExpenses.js";
 import { getCategoryExpenses } from "../utils/helpers/expenseCategory.js";
+import { setMonthlyBudget } from "../utils/monthlyBudget.js";
+import { monthlyBudgetCalculator } from "../utils/helpers/budgetCalculator.js";
 
 const filePath = path.join(import.meta.dirname , "./../../logs/expenseTracker.txt");
 
@@ -32,25 +34,30 @@ export function addExpenseRepository(descriptionOfExpense , amountOfExpense , ca
                 category  : categoryOfExpense,
             }
 
-            let data = fs.readFileSync(filePath , 'utf8');
+            const response = monthlyBudgetCalculator(amountOfExpense , false);
 
-            if(!data) {
-                data = JSON.stringify([]);
+            if(!response) {
+                return response;
+            } else {
+                let data = fs.readFileSync(filePath , 'utf8');
+
+                if(!data) {
+                    data = JSON.stringify([]);
+                }
+
+                const allExpenses = JSON.parse(data);
+
+                // if(!Array.isArray(allExpenses)) {
+                //     allExpenses = [allExpenses];
+                // }
+
+                allExpenses.push(newExpense);
+
+                // writing the newly created expense into the file
+                fs.writeFileSync(filePath , JSON.stringify(allExpenses , null , 2) , 'utf8');
+
+                return newExpense;
             }
-
-            const allExpenses = JSON.parse(data);
-
-            // if(!Array.isArray(allExpenses)) {
-            //     allExpenses = [allExpenses];
-            // }
-
-            allExpenses.push(newExpense);
-
-            // writing the newly created expense into the file
-            fs.writeFileSync(filePath , JSON.stringify(allExpenses , null , 2) , 'utf8');
-
-            return newExpense;
-
         } else {
             throw new Error("Unable to find a file or folder");
         }
@@ -79,17 +86,29 @@ export function updateExpenseRepository(expenseId , updateObj) {
                 expenseToBeUpdated.description = updateObj.description;
             }
 
+            let response;
+
             if(updateObj.amount) {
+                response = monthlyBudgetCalculator(expenseToBeUpdated.amount , true);
+
                 expenseToBeUpdated.amount = updateObj.amount;
+                
+                response = monthlyBudgetCalculator(expenseToBeUpdated.amount , false);
             }
 
-            expenseToBeUpdated.updatedAt = getTimeStamp();
+            if(!response) {
+                return response;
+            } else {
+                expenseToBeUpdated.updatedAt = getTimeStamp();
 
-            expenseList[indOfExpense] = expenseToBeUpdated;
+                expenseList[indOfExpense] = expenseToBeUpdated;
 
-            fs.writeFileSync(filePath , JSON.stringify(expenseList , null , 2) , 'utf8');
+                fs.writeFileSync(filePath , JSON.stringify(expenseList , null , 2) , 'utf8');
 
-            return expenseToBeUpdated;
+                return expenseToBeUpdated;
+            }
+
+            
         }
     } catch (error) {
         console.log(error);
@@ -109,6 +128,8 @@ export function deleteExpenseRepository(expenseId) {
             if(targetInd == -1) {
                 throw new Error(`Unable to find the corresponding expense with id : ${expenseId} `);
             }
+
+            monthlyBudgetCalculator(Number(allExpenses[targetInd].amount) , true);
 
             allExpenses.splice(targetInd , 1);
 
@@ -191,5 +212,15 @@ export function getExpensesByCategoryRepository(category) {
         }
     } catch (error) {
         console.log(error);
+    }
+}
+
+export function setMonthlyBudgetRepository(budget) {
+    try {
+        const response = setMonthlyBudget(budget);
+
+        return response;
+    } catch (error) {
+        console.log(error);   
     }
 }

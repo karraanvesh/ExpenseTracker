@@ -1,63 +1,10 @@
 [
   {
-    "id": 37,
+    "id": 73,
     "description": "Lunch",
     "amount": "100",
-    "createdAt": "28-10-2026 20:26:56.416",
-    "updatedAt": "28-10-2026 20:26:56.417"
-  },
-  {
-    "id": 39,
-    "description": "Chocolates_and_icecreams",
-    "amount": "200",
-    "createdAt": "28-10-2026 20:31:34.819",
-    "updatedAt": "28-10-2026 20:31:34.820"
-  },
-  {
-    "id": 40,
-    "description": "Groceries",
-    "amount": "500",
-    "createdAt": "28-10-2026 20:32:1.256",
-    "updatedAt": "28-10-2026 20:32:1.257"
-  },
-  {
-    "id": 41,
-    "description": "Library",
-    "amount": "300",
-    "createdAt": "1-11-2026 21:33:18.343",
-    "updatedAt": "1-11-2026 21:33:18.344",
+    "createdAt": "1-11-2026 22:42:42.139",
+    "updatedAt": "1-11-2026 22:42:42.140",
     "category": "personal"
-  },
-  {
-    "id": 42,
-    "description": "laptop",
-    "amount": "50000",
-    "createdAt": "1-11-2026 21:34:9.147",
-    "updatedAt": "1-11-2026 21:34:9.147",
-    "category": "personal"
-  },
-  {
-    "id": 43,
-    "description": "formal shoes",
-    "amount": "2000",
-    "createdAt": "1-11-2026 21:34:32.708",
-    "updatedAt": "1-11-2026 21:34:32.709",
-    "category": "professional"
-  },
-  {
-    "id": 44,
-    "description": "carry bag",
-    "amount": "1000",
-    "createdAt": "1-11-2026 21:34:46.253",
-    "updatedAt": "1-11-2026 21:34:46.254",
-    "category": "professional"
-  },
-  {
-    "id": 45,
-    "description": "Cool glasses",
-    "amount": "500",
-    "createdAt": "1-11-2026 21:36:19.928",
-    "updatedAt": "1-11-2026 21:36:19.929",
-    "category": "professional"
   }
 ]
