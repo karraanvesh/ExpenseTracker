@@ -1,4 +1,4 @@
-import { addExpenseRepository, deleteExpenseRepository, getExpensesByCategoryRepository, getExpensesByMonthRepository, getExpensesRepoistory, getTotalExpensesRepository, setMonthlyBudgetRepository, updateExpenseRepository } from "../repository/expense.repository.js";
+import { addExpenseRepository, deleteExpenseRepository, exportExpensesToCSVRepository, getExpensesByCategoryRepository, getExpensesByMonthRepository, getExpensesRepoistory, getTotalExpensesRepository, setMonthlyBudgetRepository, updateExpenseRepository } from "../repository/expense.repository.js";
 
 export function addExpenseService(description , amount , category) {
     const expense = addExpenseRepository(description , amount , category);
@@ -46,4 +46,10 @@ export function setMonthlyBudgetService(budget) {
     const response = setMonthlyBudgetRepository(budget);
 
     return response;
+}
+
+export function exportExpensesToCSVService() {
+    const result = exportExpensesToCSVRepository();
+
+    return result;
 }

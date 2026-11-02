@@ -1,4 +1,4 @@
-import { addExpenseService, deleteExpenseService, getExpensesByCategoryService, getExpensesByMonthService, getExpensesService, getTotalExpensesService, setMonthlyBudgetService, updateExpenseService } from "../services/expense.service.js";
+import { addExpenseService, deleteExpenseService, exportExpensesToCSVService, getExpensesByCategoryService, getExpensesByMonthService, getExpensesService, getTotalExpensesService, setMonthlyBudgetService, updateExpenseService } from "../services/expense.service.js";
 
 export function addExpenseController(description , amount , category) {
     const expenseResponse = addExpenseService(description , amount , category);
@@ -53,6 +53,12 @@ export function getExpensesByCategoryController(category) {
 
 export function setMonthlyBudgetController(budget) {
     const response = setMonthlyBudgetService(budget);
+
+    console.log(response);
+}
+
+export function exportExpensesToCSVController() {
+    const response = exportExpensesToCSVService();
 
     console.log(response);
 }

@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { addExpenseController, deleteExpenseController, getAllExpensesController, getExpensesByCategoryController, getExpensesByMonthController, getTotalExpensesController, setMonthlyBudgetController, updateExpenseController } from "../controllers/expense.controller.js";
+import { addExpenseController, deleteExpenseController, exportExpensesToCSVController, getAllExpensesController, getExpensesByCategoryController, getExpensesByMonthController, getTotalExpensesController, setMonthlyBudgetController, updateExpenseController } from "../controllers/expense.controller.js";
 import { isValidAmount } from "../middlewares/validateAmount.js";
 
 export function expenseRouter() {
@@ -64,7 +64,7 @@ export function expenseRouter() {
 
     program
     .command("list")
-    .action((options) => {
+    .action(() => {
         getAllExpensesController();
     });
 
@@ -82,6 +82,12 @@ export function expenseRouter() {
         const monthlyBudget = Number(options.budget);
 
         setMonthlyBudgetController(monthlyBudget);
+    });
+
+    program
+    .command("export_to_CSV_File")
+    .action(() => {
+        exportExpensesToCSVController();
     });
 
     program.parse();

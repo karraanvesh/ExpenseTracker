@@ -1,10 +1,50 @@
 [
   {
-    "id": 73,
-    "description": "Lunch",
+    "id": 77,
+    "description": "Formal shirts and pants",
+    "amount": "700",
+    "createdAt": "2-11-2026 22:13:6.673",
+    "updatedAt": "2-11-2026 22:13:6.674",
+    "category": "professional"
+  },
+  {
+    "id": 78,
+    "description": "Breakfast",
+    "amount": "70",
+    "createdAt": "2-11-2026 22:13:23.603",
+    "updatedAt": "2-11-2026 22:13:23.604",
+    "category": "personal"
+  },
+  {
+    "id": 79,
+    "description": "Dinner",
     "amount": "100",
-    "createdAt": "1-11-2026 22:42:42.139",
-    "updatedAt": "1-11-2026 22:42:42.140",
+    "createdAt": "2-11-2026 22:13:42.212",
+    "updatedAt": "2-11-2026 22:13:42.213",
+    "category": "personal"
+  },
+  {
+    "id": 80,
+    "description": "Travel charges",
+    "amount": "200",
+    "createdAt": "2-11-2026 22:14:18.415",
+    "updatedAt": "2-11-2026 22:14:18.416",
+    "category": "professional"
+  },
+  {
+    "id": 81,
+    "description": "Tea and coffee",
+    "amount": "40",
+    "createdAt": "2-11-2026 22:18:50.595",
+    "updatedAt": "2-11-2026 22:18:50.596",
+    "category": "professional"
+  },
+  {
+    "id": 82,
+    "description": "Sun glasses",
+    "amount": "100",
+    "createdAt": "2-11-2026 22:21:0.425",
+    "updatedAt": "2-11-2026 22:21:0.426",
     "category": "personal"
   }
 ]

@@ -8,6 +8,7 @@ import { getMonthlyExpenses } from "../utils/helpers/monthlyExpenses.js";
 import { getCategoryExpenses } from "../utils/helpers/expenseCategory.js";
 import { setMonthlyBudget } from "../utils/monthlyBudget.js";
 import { monthlyBudgetCalculator } from "../utils/helpers/budgetCalculator.js";
+import { jsonToCsv } from "../utils/helpers/convertJsonToCSV.js";
 
 const filePath = path.join(import.meta.dirname , "./../../logs/expenseTracker.txt");
 
@@ -129,7 +130,9 @@ export function deleteExpenseRepository(expenseId) {
                 throw new Error(`Unable to find the corresponding expense with id : ${expenseId} `);
             }
 
-            monthlyBudgetCalculator(Number(allExpenses[targetInd].amount) , true);
+            const amount = Number(allExpenses[targetInd].amount)
+
+            monthlyBudgetCalculator(amount , true);
 
             allExpenses.splice(targetInd , 1);
 
@@ -148,7 +151,11 @@ export function getExpensesRepoistory() {
         if(fs.existsSync(filePath)) {
             const fileContent = fs.readFileSync(filePath , 'utf8');
 
-            const result = JSON.parse(fileContent);
+            let result = JSON.parse(fileContent);
+
+            if(result.length == 0) {
+                result = `There are no expenses to display`;
+            }
 
             return result;
         } else {
@@ -222,5 +229,30 @@ export function setMonthlyBudgetRepository(budget) {
         return response;
     } catch (error) {
         console.log(error);   
+    }
+}
+
+export function exportExpensesToCSVRepository() {
+    try {
+
+        if(fs.existsSync(filePath)) {
+            const data = fs.readFileSync(filePath , 'utf8');
+
+            const allExpenses = JSON.parse(data);
+
+            const csvContent = jsonToCsv(allExpenses);
+
+            const csvFilePath = path.join(import.meta.dirname , "./../utils/expenseTracker.csv");
+
+            fs.writeFileSync(csvFilePath , csvContent , 'utf8');
+
+            const result = `Data is successfully exported to the below path : ${csvFilePath}`;
+
+            return result;
+        } else {
+            throw new Error("NotFoundError : Unable to find the file or folder");
+        }
+    } catch (error) {
+        console.log(error);
     }
 }
